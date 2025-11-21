@@ -15,7 +15,7 @@ if __name__ == "__main__":
             client_secret=os.getenv("CLIENT_SECRET"),
             redirect_uri=os.getenv("REDIRECT_URI"),
             scope=scope,
-            username=os.getenv("USERNAME"),
+            username=os.getenv("SPOTIFY_USERNAME"),
         )
     )
 
@@ -35,7 +35,7 @@ if __name__ == "__main__":
         ]
         # max 100 items can be added to a playlist at a time
         # https://developer.spotify.com/documentation/web-api/reference/add-tracks-to-playlist
-        for batch in batched(all_tracks, 100):
+        for batch in batched(tracks, 100):
             spotify.playlist_add_items(playlist, batch)
 
         offset += len(items)
